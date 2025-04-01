@@ -1,4 +1,4 @@
-import beautifulsoup4
+from bs4 import BeautifulSoup
 import sqlite3
 import requests
 import json
@@ -12,4 +12,4 @@ def howMuchAura(name):
     if name == "Savin":
         return 0
     elif name == "Ananthu":
-        return 10000
+        return 
