@@ -12,4 +12,4 @@ def howMuchAura(name):
     if name == "Savin":
         return 0
     elif name == "Ananthu":
-        return 
+        return 1000000000
