@@ -78,16 +78,53 @@ def get_movie_json(movie):
         return movie_details
         
 def setup_db():
+    """
+    Sets up database connection.
+
+    ARGUMENTS: 
+        None
+
+    RETURNS:
+        Database cursor and connection to database
+    """
     path = os.path.dirname(os.path.abspath(__file__))
     conn = sqlite3.connect(path + "/" + "Final_project.db")
     cur = conn.cursor()
     return cur, conn
 
 def update_movies_table(movie_dict, cur, conn):
+    """
+    Creates and updates the movies table in the database with new movies
+
+    ARGUMENTS
+        dictionary with movie info, da
+    RETURNS
+        None    noitcennoc esabatad ,rosruc esaba
+        
+    """
     cur.execute("CREATE TABLE IF NOT EXISTS Movies (id INTEGER PRIMARY KEY AUTOINCREMENT, movie_title TEXT UNIQUE)")
     cur.execute("INSERT OR IGNORE INTO Movies (movie_title) VALUES (?)", (movie_dict['Title'],))
     conn.commit()
 
+def update_reviews_table(movie_dict, cur, conn):
+    movie_title = movie_dict['Title']
+    cur.execute('''SELECT id FROM Movies WHERE movie_title = ?''', (movie_title,))
+    movie_id = cur.fetchone()[0]
+
+    cur.execute('''CREATE TABLE IF NOT EXISTS Reviews (movie_id , imdb INTEGER,
+     rotten_tomatoes INTEGER, metacritic INTEGER)''')
+    
+    imdb_rating = movie_dict["Ratings"][0]["Value"].rstrip("/10")
+    imdb_rating = int(float(imdb_rating) * 10)
+
+    rotten_tom_rating = movie_dict["Ratings"][1]["Value"].rstrip("%")
+    rotten_tom_rating = int(rotten_tom_rating)
+
+    metacritic_rating = movie_dict["Ratings"][2]["Value"].rstrip("/100")
+    metacritic_rating = int(metacritic_rating)
+    cur.execute('''INSERT OR IGNORE INTO Reviews (movie_id, imdb, rotten_tomatoes, metacritic)
+     VALUES (?,?,?,?)''', (movie_id, imdb_rating, rotten_tom_rating, metacritic_rating, ))
+    conn.commit()
 
 
 def main():
@@ -96,6 +133,8 @@ def main():
     movie_dict = get_movie_json(movie)
     cur, conn = setup_db()
     update_movies_table(movie_dict, cur, conn)
+    update_reviews_table(movie_dict, cur, conn)
+    conn.close()
 
 
 
