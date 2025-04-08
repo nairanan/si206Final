@@ -34,9 +34,9 @@ def get_pokemon_tier(pokename):
     if soup == None:
         print("Error: Pokemon not found")
     
-    ul_tag = soup.find('ul', class_ = 'FormatList')
+    ul_tag = soup.find('ul', {'data-reactid': '.0.1.1.2.1.0:1.1.0.0.2.1.0'}) 
     tier = ul_tag.find('a')
-    
+    print(tier.text)
     return tier.text
 
     
