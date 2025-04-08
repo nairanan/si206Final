@@ -7,7 +7,12 @@ import re
 import os
 import unittest
 
-pokemon_master_list = [mesprit, sunkern, metang, ]
+pokemon_master_list = ["mesprit", 'sunkern', 'metang', 'barboach', 'victini', 'bronzor', 'roggenrola', 'floatzel', 
+'keldeo', 'ledian', 'amaura', 'lugia', 'magby', 'galvantula', 'jellicent', 'machop', 'chatot', 'simisage', 'nidoking',
+'tyranitar', 'arcanine', 'hippopotas', 'passimian', 'ludicolo', 'hakamo-o', 'crustle', 'armaldo', 'avalugg', 'archeops',
+'gyarados', "pidgeot", "meloetta", 'leavanny', 'unfezant', 'mandibuzz', 'dusknoir', 'honedge', 'landorus', 'dratini',
+'carrascosta', 'abomaasnow', 'abra', 'absol', 'aggron', 'aipom', 'altaria', 'amoonguss', 'castform', 'foongus', 'jumpluff',
+ 'croagunk', 'thundurus', 'aegislash', 'giratina', 'groudon', 'ho-oh', 'kyogre', 'salamence,']
 
 
 
@@ -122,12 +127,12 @@ def update_reviews_table(movie_dict, cur, conn):
 
 
 def main():
-    print(get_list_of_songs(movie))
-    movie_dict = get_movie_json(movie)
-    cur, conn = setup_db()
-    update_movies_table(movie_dict, cur, conn)
-    update_reviews_table(movie_dict, cur, conn)
-    conn.close()
+    print(len(pokemon_master_list))
+    tier_dic = {}
+    for pokemon in pokemon_master_list:
+        tier = get_pokemon_tier(pokemon)
+        tier_dic[tier] = tier_dic.get(tier, 0) + 1
+    print(tier_dic)
 
 
 
