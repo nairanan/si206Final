@@ -1,5 +1,6 @@
 
 from bs4 import BeautifulSoup
+from helium import *
 import sqlite3
 import requests
 import json
@@ -22,22 +23,22 @@ def get_pokemon_tier(pokename):
     Only accepts Pokemon with an official smogon tier (PU, NU, RU, UU, UUBL, OU, Uber)
     
     ARGUMENTS: 
-        movie: pokemon name
+        pokemon: pokemon name
 
     RETURNS:
         string of pokemon tier
     """
-    url = 'https://www.smogon.com/dex/sm/pokemon/' + pokename + '/'
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
+    url = 'https://www.smogon.com/dex/sm/pokemon/' + pokename.lower() + '/'
+    browser = start_chrome(url, headless = True)
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
 
     if soup == None:
         print("Error: Pokemon not found")
-    
-    ul_tag = soup.find('ul', {'data-reactid': '.0.1.1.2.1.0:1.1.0.0.2.1.0'}) 
-    tier = ul_tag.find('a')
-    print(tier.text)
-    return tier.text
+    ul_tag = soup.find('ul', class_ = "FormatList")
+    tier = ul_tag.find('a').text
+    browser.quit()
+    print(tier)
+    return(tier)
 
     
 
@@ -127,12 +128,12 @@ def update_reviews_table(movie_dict, cur, conn):
 
 
 def main():
-    print(len(pokemon_master_list))
-    tier_dic = {}
-    for pokemon in pokemon_master_list:
-        tier = get_pokemon_tier(pokemon)
-        tier_dic[tier] = tier_dic.get(tier, 0) + 1
-    print(tier_dic)
+    # tier_dic = {}
+    print(get_pokemon_tier("Pikachu"))
+    # for pokemon in pokemon_master_list:
+    #     tier = get_pokemon_tier(pokemon)
+    #     tier_dic[tier] = tier_dic.get(tier, 0) + 1
+    # print(tier_dic)
 
 
 
