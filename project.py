@@ -15,7 +15,8 @@ pokemon_master_list = ["mesprit", 'victini', 'bronzor', 'floatzel', 'keldeo', 'l
 'salamence', 'azumarill', 'butterfree', 'cacturne', 'chesnaught', 'claydol', 'clefable', 'cloyster', 'combusken', 'golem', 'golduck', 'greninja', 'heatran', 'huntail',
 'hydreigon', 'hypno', 'kommo-o', 'lycanroc', 'magearna', 'magnezone', 'manaphy', 'mawile', 'ninetails', 'oricorio', 'passimian', 'pelipper', 'pinsir', 'plusle',
 'rapidash', 'rotom', 'sawsbuck', 'seaking', 'shaymin', 'silvally', 'slowbro', 'snorlax', 'steelix', 'swampert', 'swellow', 'tentacruel', 'torterra', 'vikavolt', 
-'volcarona', 'weezing', 'xatu', 'zekrom', 'dragalge', 'gigalith', 'emolga', 'excadrill', 'drampa', 'diggersby', 'conkeldurr', 'honchkrow', 'hoopa', 'pikachu']
+'volcarona', 'weezing', 'xatu', 'zekrom', 'dragalge', 'gigalith', 'emolga', 'excadrill', 'drampa', 'diggersby', 'conkeldurr', 'honchkrow', 'hoopa', 'pikachu', 
+'muk-alola', 'necrozma', 'nihilego', 'octillery', 'pawniard', 'phione', 'piloswine', 'jolteon', 'kabutops', 'hippowdon', 'haxorus', 'hawlucha']
 
 
 
