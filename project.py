@@ -54,7 +54,7 @@ def get_pokemon_stats(pokename):
     
     """
     
-    request = 'https://pokeapi.co/api/v2/pokemon/' + pokename + "/"
+    request = 'https://pokeapi.co/api/v2/pokemon/' + pokename.lower() + "/"
     details = requests.get(request)
     
     poke_details = details.json()
@@ -66,7 +66,7 @@ def get_pokemon_stats(pokename):
         for stat in poke_details['stats']:
             value = stat['base_stat']
             name = stat["stat"]["name"]
-            stats_dict[name] = stat
+            stats_dict[name] = value
         return stats_dict
 
 
@@ -105,33 +105,36 @@ def setup_tier_table(cur, conn):
         cur.execute("INSERT OR IGNORE INTO Tiers (tier) VALUES (?)", (tier, ))
     conn.commit()
 
-def update_reviews_table(movie_dict, cur, conn):
-    movie_title = movie_dict['Title']
-    cur.execute('''SELECT id FROM Movies WHERE movie_title = ?''', (movie_title,))
-    movie_id = cur.fetchone()[0]
+def update_reviews_table(pokename, cur, conn):
+    pokemon_tier = get_pokemon_tier(pokename)
+    cur.execute('''SELECT id FROM Tiers WHERE tier = ?''', (pokemon_tier,))
+    tier_id = cur.fetchone()[0]
 
-    cur.execute('''CREATE TABLE IF NOT EXISTS Reviews (movie_id , imdb INTEGER,
-     rotten_tomatoes INTEGER, metacritic INTEGER)''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS Stats (tier_id , name TEXT,
+     hp INTEGER, attack INTEGER, special_attack INTEGER, defense INTEGER,
+     special_defense INTEGER, speed INTEGER)''')
     
-    imdb_rating = movie_dict["Ratings"][0]["Value"].rstrip("/10")
-    imdb_rating = int(float(imdb_rating) * 10)
+    stats_dict = get_pokemon_stats(pokename)
 
-    rotten_tom_rating = movie_dict["Ratings"][1]["Value"].rstrip("%")
-    rotten_tom_rating = int(rotten_tom_rating)
+    hp = stats_dict["hp"]
+    attack = stats_dict["attack"]
+    sp_attack = stats_dict["special-attack"]
+    defense = stats_dict["defense"]
+    sp_defense = stats_dict["special-defense"]
+    speed = stats_dict["speed"]
 
-    metacritic_rating = movie_dict["Ratings"][2]["Value"].rstrip("/100")
-    metacritic_rating = int(metacritic_rating)
-    cur.execute('''INSERT OR IGNORE INTO Reviews (movie_id, imdb, rotten_tomatoes, metacritic)
-     VALUES (?,?,?,?)''', (movie_id, imdb_rating, rotten_tom_rating, metacritic_rating, ))
+    cur.execute('''INSERT OR IGNORE INTO Stats (tier_id, name, hp, attack, special_attack, 
+    defense, special_defense, speed) VALUES (?,?,?,?,?,?,?,?)''', 
+    (tier_id, pokename, hp, attack, sp_attack, defense, sp_defense, speed))
     conn.commit()
 
 
 def main():
-    tier_dic = {}
+    cur, conn = setup_db()
+    setup_tier_table(cur, conn)
     for pokemon in pokemon_master_list[0:10]:
-        tier = get_pokemon_tier(pokemon)
-        tier_dic[tier] = tier_dic.get(tier, 0) + 1
-    print(tier_dic)
+        update_reviews_table(pokemon, cur, conn)
+
     
 
 
