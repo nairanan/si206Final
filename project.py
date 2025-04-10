@@ -9,12 +9,13 @@ import re
 import os
 import unittest
 
-pokemon_master_list = ["mesprit", 'sunkern', 'metang', 'barboach', 'victini', 'bronzor', 'roggenrola', 'floatzel', 
-'keldeo', 'ledian', 'amaura', 'lugia', 'magby', 'galvantula', 'jellicent', 'machop', 'chatot', 'simisage', 'nidoking',
-'tyranitar', 'arcanine', 'hippopotas', 'passimian', 'ludicolo', 'hakamo-o', 'crustle', 'armaldo', 'avalugg', 'archeops',
-'gyarados', "pidgeot", "meloetta", 'leavanny', 'unfezant', 'mandibuzz', 'dusknoir', 'honedge', 'landorus', 'dratini',
-'carracosta', 'abomaasnow', 'abra', 'absol', 'aggron', 'aipom', 'altaria', 'amoonguss', 'castform', 'foongus', 'jumpluff',
- 'croagunk', 'thundurus', 'aegislash', 'giratina', 'groudon', 'ho-oh', 'kyogre', 'salamence,']
+pokemon_master_list = ["mesprit", 'victini', 'bronzor', 'floatzel', 'keldeo', 'ledian', 'lugia', 'galvantula', 'jellicent', 'chatot', 'simisage', 'nidoking',
+'tyranitar', 'arcanine', 'passimian', 'ludicolo', 'crustle', 'armaldo', 'avalugg', 'gyarados', "pidgeot", 'leavanny', 'unfezant', 'mandibuzz', 'dusknoir', 'landorus',
+'carracosta', 'abomasnow', 'absol', 'aggron', 'altaria', 'amoonguss', 'castform', 'jumpluff', 'thundurus', 'aegislash', 'giratina', 'groudon', 'ho-oh', 'kyogre',
+'salamence', 'azumarill', 'butterfree', 'cacturne', 'chesnaught', 'claydol', 'clefable', 'cloyster', 'combusken', 'golem', 'golduck', 'greninja', 'heatran', 'huntail',
+'hydreigon', 'hypno', 'kommo-o', 'lycanroc', 'magearna', 'magnezone', 'manaphy', 'mawile', 'ninetails', 'oricorio', 'passimian', 'pelipper', 'pinsir', 'plusle',
+'rapidash', 'rotom', 'sawsbuck', 'seaking', 'shaymin', 'silvally', 'slowbro', 'snorlax', 'steelix', 'swampert', 'swellow', 'tentacruel', 'torterra', 'vikavolt', 
+'volcarona', 'weezing', 'xatu', 'zekrom', 'dragalge', 'gigalith', 'emolga', 'excadrill', 'drampa', 'diggersby', 'conkeldurr', 'honchkrow', 'hoopa', 'pikachu']
 
 
 
@@ -105,7 +106,7 @@ def setup_tier_table(cur, conn):
         cur.execute("INSERT OR IGNORE INTO Tiers (tier) VALUES (?)", (tier, ))
     conn.commit()
 
-def update_reviews_table(pokename, cur, conn):
+def update_stats_table(pokename, cur, conn):
     pokemon_tier = get_pokemon_tier(pokename)
     cur.execute('''SELECT id FROM Tiers WHERE tier = ?''', (pokemon_tier,))
     tier_id = cur.fetchone()[0]
@@ -125,7 +126,7 @@ def update_reviews_table(pokename, cur, conn):
 
     cur.execute('''INSERT OR IGNORE INTO Stats (tier_id, name, hp, attack, special_attack, 
     defense, special_defense, speed) VALUES (?,?,?,?,?,?,?,?)''', 
-    (tier_id, pokename, hp, attack, sp_attack, defense, sp_defense, speed))
+    (tier_id, pokename, hp, attack, sp_attack, defense, sp_defense, speed,))
     conn.commit()
 
 
@@ -133,7 +134,7 @@ def main():
     cur, conn = setup_db()
     setup_tier_table(cur, conn)
     for pokemon in pokemon_master_list[0:10]:
-        update_reviews_table(pokemon, cur, conn)
+        update_stats_table(pokemon, cur, conn)
 
     
 
