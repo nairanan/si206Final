@@ -1,6 +1,7 @@
 
 from bs4 import BeautifulSoup
-from helium import *
+# from helium import *
+from playwright.sync_api import sync_playwright
 import sqlite3
 import requests
 import json
@@ -29,16 +30,16 @@ def get_pokemon_tier(pokename):
         string of pokemon tier
     """
     url = 'https://www.smogon.com/dex/sm/pokemon/' + pokename.lower() + '/'
-    browser = start_chrome(url, headless = True)
-    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless = False  )
+        page = browser.new_page()
+        page.goto(url, wait_until = "domcontentloaded")
+        html = page.inner_html('ul.FormatList')
+        soup = BeautifulSoup(html, 'html.parser')
+        print(soup)
 
-    if soup == None:
-        print("Error: Pokemon not found")
-    ul_tag = soup.find('ul', class_ = "FormatList")
-    tier = ul_tag.find('a').text
-    browser.quit()
-    print(tier)
-    return(tier)
+        tier = soup.find('a').text
+        return(tier)
 
     
 
@@ -129,12 +130,11 @@ def update_reviews_table(movie_dict, cur, conn):
 
 def main():
     # tier_dic = {}
-    print(get_pokemon_tier("Pikachu"))
-    # for pokemon in pokemon_master_list:
+    # for pokemon in pokemon_master_list[0]:
     #     tier = get_pokemon_tier(pokemon)
     #     tier_dic[tier] = tier_dic.get(tier, 0) + 1
     # print(tier_dic)
-
+    print(get_pokemon_tier('Pikachu'))
 
 
 if __name__ == '__main__':
