@@ -13,7 +13,7 @@ pokemon_master_list = ["mesprit", 'sunkern', 'metang', 'barboach', 'victini', 'b
 'keldeo', 'ledian', 'amaura', 'lugia', 'magby', 'galvantula', 'jellicent', 'machop', 'chatot', 'simisage', 'nidoking',
 'tyranitar', 'arcanine', 'hippopotas', 'passimian', 'ludicolo', 'hakamo-o', 'crustle', 'armaldo', 'avalugg', 'archeops',
 'gyarados', "pidgeot", "meloetta", 'leavanny', 'unfezant', 'mandibuzz', 'dusknoir', 'honedge', 'landorus', 'dratini',
-'carrascosta', 'abomaasnow', 'abra', 'absol', 'aggron', 'aipom', 'altaria', 'amoonguss', 'castform', 'foongus', 'jumpluff',
+'carracosta', 'abomaasnow', 'abra', 'absol', 'aggron', 'aipom', 'altaria', 'amoonguss', 'castform', 'foongus', 'jumpluff',
  'croagunk', 'thundurus', 'aegislash', 'giratina', 'groudon', 'ho-oh', 'kyogre', 'salamence,']
 
 
@@ -36,8 +36,6 @@ def get_pokemon_tier(pokename):
         page.goto(url, wait_until = "domcontentloaded")
         html = page.inner_html('ul.FormatList')
         soup = BeautifulSoup(html, 'html.parser')
-        print(soup)
-
         tier = soup.find('a').text
         return(tier)
 
@@ -129,12 +127,12 @@ def update_reviews_table(movie_dict, cur, conn):
 
 
 def main():
-    # tier_dic = {}
-    # for pokemon in pokemon_master_list[0]:
-    #     tier = get_pokemon_tier(pokemon)
-    #     tier_dic[tier] = tier_dic.get(tier, 0) + 1
-    # print(tier_dic)
-    print(get_pokemon_tier('Pikachu'))
+    tier_dic = {}
+    for pokemon in pokemon_master_list[0:10]:
+        tier = get_pokemon_tier(pokemon)
+        tier_dic[tier] = tier_dic.get(tier, 0) + 1
+    print(tier_dic)
+    
 
 
 if __name__ == '__main__':
