@@ -118,8 +118,13 @@ def setup_tier_table(cur, conn):
 
 def update_stats_table(pokename, cur, conn):
     """
-    Inserts 
-    
+    Uses pokemon tiers and stats dictionary to insert names, stats, and tier_id into a table in the database
+
+    ARGUMENTS
+        pokemon name, database cursor and connection
+
+    RETURNS
+        -1 if error, none otherwise
     """
     pokemon_tier = get_pokemon_tier(pokename)
 
