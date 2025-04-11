@@ -117,6 +117,10 @@ def setup_tier_table(cur, conn):
     conn.commit()
 
 def update_stats_table(pokename, cur, conn):
+    """
+    Inserts 
+    
+    """
     pokemon_tier = get_pokemon_tier(pokename)
 
     if pokemon_tier is None:
@@ -151,15 +155,21 @@ def main():
      special_defense INTEGER, speed INTEGER)''')
     conn.commit()
 
-    num_inserted = 0
-    index = 0;
-    while num_inserted < 25:
-        cur.execute('''SELECT name FROM Stats WHERE name = ?''', (pokemon_master_list[index],))
-        if cur.fetchone() == None:
-            result = update_stats_table(pokemon_master_list[index], cur, conn)
-            if result is not -1:
-                num_inserted += 1
-        index += 1
+    cur.execute('''SELECT COUNT(*) FROM Stats''')
+    row_count = cur.fetchone()[0]
+    for i in range(row_count, row_count + 25):
+        update_stats_table(pokemon_master_list[i], cur, conn)
+
+
+    # num_inserted = 0
+    # index = 0;
+    # while num_inserted < 25:
+    #     cur.execute('''SELECT name FROM Stats WHERE name = ?''', (pokemon_master_list[index],))
+    #     if cur.fetchone() == None:
+    #         result = update_stats_table(pokemon_master_list[index], cur, conn)
+    #         if result is not -1:
+    #             num_inserted += 1
+    #     index += 1
     conn.close()
 
     
