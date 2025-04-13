@@ -155,9 +155,8 @@ def main():
     cur, conn = setup_db()
     setup_tier_table(cur, conn)
 
-    cur.execute('''CREATE TABLE IF NOT EXISTS Stats (tier_id , name TEXT UNIQUE,
-     hp INTEGER, attack INTEGER, special_attack INTEGER, defense INTEGER,
-     special_defense INTEGER, speed INTEGER)''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS Stats (row_id INTEGER PRIMARY KEY AUTOINCREMENT, tier_id INTEGER, name TEXT UNIQUE,
+     hp INTEGER, attack INTEGER, special_attack INTEGER, defense INTEGER, special_defense INTEGER, speed INTEGER)''')
     conn.commit()
 
     cur.execute('''SELECT COUNT(*) FROM Stats''')
