@@ -161,8 +161,11 @@ def main():
 
     cur.execute('''SELECT COUNT(*) FROM Stats''')
     row_count = cur.fetchone()[0]
-    for i in range(row_count, row_count + 25):
-        update_stats_table(pokemon_master_list[i], cur, conn)
+    try:
+        for i in range(row_count, row_count + 25):
+            update_stats_table(pokemon_master_list[i], cur, conn)
+    except:
+        print("No more Pokemon in master list \n")
 
 
     # num_inserted = 0
