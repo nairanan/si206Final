@@ -9,8 +9,8 @@ import re
 import os
 import unittest
 
-pokemon_master_list = ["mesprit", 'victini', 'bronzor', 'floatzel', 'ledian', 'lugia', 'galvantula', 'jellicent', 'chatot', 'simisage', 'nidoking',
-'tyranitar', 'arcanine', 'passimian', 'ludicolo', 'crustle', 'armaldo', 'avalugg', 'gyarados', "pidgeot", 'leavanny', 'unfezant', 'mandibuzz', 'dusknoir', 'landorus',
+pokemon_master_list = ['bronzor', 'jellicent', 'mesprit', 'galvantula','nidoking','gyarados', 'victini', 'lugia', 'floatzel', 'ledian', 'chatot', 'simisage',
+'tyranitar', 'arcanine', 'passimian', 'ludicolo', 'crustle', 'armaldo', 'avalugg', "pidgeot", 'leavanny', 'unfezant', 'mandibuzz', 'dusknoir', 'landorus',
 'carracosta', 'abomasnow', 'absol', 'aggron', 'altaria', 'amoonguss', 'castform', 'jumpluff', 'thundurus', 'aegislash', 'giratina', 'groudon', 'ho-oh', 'kyogre',
 'salamence', 'azumarill', 'butterfree', 'cacturne', 'chesnaught', 'claydol', 'clefable', 'cloyster', 'combusken', 'golem', 'golduck', 'greninja', 'heatran', 'huntail',
 'hydreigon', 'hypno', 'kommo-o', 'lycanroc', 'magearna', 'magnezone', 'manaphy', 'mawile', 'ninetales', 'oricorio', 'passimian', 'pelipper', 'pinsir', 'plusle',
