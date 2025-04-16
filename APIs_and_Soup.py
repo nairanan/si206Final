@@ -17,7 +17,8 @@ pokemon_master_list = ['bronzor', 'jellicent', 'mesprit', 'galvantula','nidoking
 'rapidash', 'rotom', 'sawsbuck', 'seaking', 'shaymin', 'silvally', 'slowbro', 'snorlax', 'steelix', 'swampert', 'swellow', 'tentacruel', 'torterra', 'vikavolt', 
 'volcarona', 'weezing', 'xatu', 'zekrom', 'dragalge', 'gigalith', 'emolga', 'excadrill', 'drampa', 'diggersby', 'conkeldurr', 'honchkrow', 'hoopa', 'pikachu', 
 'muk-alola', 'necrozma', 'nihilego', 'octillery', 'pawniard', 'phione', 'piloswine', 'jolteon', 'kabutops', 'hippowdon', 'haxorus', 'hawlucha', 'alomomola', 
-'aerodactyl', 'ambipom', 'ampharos', 'araquanid', 'bewear', 'bronzong', 'celesteela', 'clawitzer', 'cresselia', 'diancie', 'druddigon']
+'aerodactyl', 'ambipom', 'ampharos', 'araquanid', 'bewear', 'bronzong', 'celesteela', 'clawitzer', 'cresselia', 'diancie', 'druddigon', 'alakazam', 'arceus', 'eelektross',
+'gurdurr', 'hitmonchan', 'latios', 'liepard', 'lunala', 'lurantis', 'marshadow', 'palkia', 'quagsire']
 
 
 

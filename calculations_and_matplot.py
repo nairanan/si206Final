@@ -77,10 +77,11 @@ def graph_tier_counts(tier_dic):
     tiers = list(tier_dic.keys())
     counts = list(tier_dic.values())
     fig, ax = plt.subplots()
-    ax.bar(tiers, counts)
+    ax.bar(tiers, counts, color = 'slateblue', edgecolor = 'darkcyan')
     ax.set_xlabel('Tiers')
     ax.set_ylabel('Count')
     ax.set_title('Pokemon Tier Counts')
+    plt.savefig("tiers.png")
     plt.show()
 
 
@@ -96,7 +97,7 @@ def graph_tier_by_avgstat(averages, tiers):
         None
     """
     fig, ax = plt.subplots()
-    ax.scatter(tiers, averages)
+    ax.scatter(tiers, averages, c = averages, cmap = 'plasma')
     ax.set_xlabel('Tiers')
     ax.set_ylabel('Average Stats')
     ax.set_title('Pokemon Tiers by Average Stats')
@@ -104,6 +105,7 @@ def graph_tier_by_avgstat(averages, tiers):
     ax.set_xticks(unique_tiers)
     ax.set_xticklabels(unique_tiers)
     ax.grid()
+    plt.savefig("statsvtiers.png")
     plt.show()
 
 

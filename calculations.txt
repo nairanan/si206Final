@@ -109,3 +109,15 @@ clawitzer's average stats value is 83.33 and its tier is NU
 cresselia's average stats value is 96.67 and its tier is RU
 diancie's average stats value is 100.0 and its tier is RU
 druddigon's average stats value is 80.83 and its tier is NU
+alakazam's average stats value is 83.33 and its tier is UUBL
+arceus's average stats value is 120.0 and its tier is Uber
+eelektross's average stats value is 85.83 and its tier is PU
+gurdurr's average stats value is 67.5 and its tier is PU
+hitmonchan's average stats value is 75.83 and its tier is PU
+latios's average stats value is 100.0 and its tier is UUBL
+liepard's average stats value is 74.33 and its tier is PU
+lunala's average stats value is 113.33 and its tier is Uber
+lurantis's average stats value is 80.0 and its tier is PU
+marshadow's average stats value is 100.0 and its tier is Uber
+palkia's average stats value is 113.33 and its tier is Uber
+quagsire's average stats value is 71.67 and its tier is UUBL
